@@ -18,7 +18,7 @@ const {items} = defineProps(['items']);
             </div>
 
             <NuxtLink :to="{ name: 'product-product', params: { product: items.id } }">
-            View Details
+                View Details
             </NuxtLink>
 
             </div>
@@ -30,7 +30,7 @@ const {items} = defineProps(['items']);
         </div>
         </div>
         <div class="img-box">
-        <img :src="`https://eruhi.gorombazar.com/storage/${items.thumbnail}`">
+        <img :src="`https://eruhi.gorombazar.com/storage/${items.thumbnail}`" />
         </div>
         <div class="details_box p-2 flex flex-col justify-between">
 

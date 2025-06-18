@@ -15,11 +15,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
 
     // private property 
-    apiSecret: "",
 
     // public property 
     public: {
-      baseApi: 'https://eruhi.gorombazar.com/web/api',
+      apiSecret: "17f4f177db16d4ec4571bb",
+      baseApi: 'https://eruhi.gorombazar.com/api',
+      assetUrl: 'https://eruhi.gorombazar.com/store',
       testApi: 'http://eruhi.local/web/api',
     }
   }

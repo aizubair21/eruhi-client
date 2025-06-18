@@ -1,9 +1,11 @@
+
+<script lang="ts" setup>
+
+</script>
+
 <template>
-   <div class="shadow-md py-2 font-bold text-uppercase w-full text-center">
-      <div class="container">
-         header part
-      </div>
-   </div>
+
+   <UserHeader />
 
    <div class="">
       <slot />
@@ -11,3 +13,7 @@
 
 
 </template>
+
+<style lang="postcss" scoped>
+   
+</style>

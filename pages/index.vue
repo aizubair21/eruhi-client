@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 definePageMeta({
   layout: 'user'
 })
@@ -7,23 +8,25 @@ definePageMeta({
 const config = useRuntimeConfig();
 
 const pdr = ref([]);
+const ctr = ref([]);
 const counter = ref(0);
 
 // // Call API
-// const { data, status, error, refresh } = await useFetch('https://eruhi.gorombazar.com/web/api/products', {
+// const { data, pending, status, error, refresh } = await useFetch('https://eruhi.gorombazar.com/api/products', {
 //   onRequest({ options }) {
 //     options.headers = {
-//       ...options.headers,
-//       'X-Master-Key': 'your_master_token_here',
+//       'Content-Type': 'application/json',
+//       'accept' : 'Application/Json',
+//       'X-MASTER-KEY': config.public.apiSecret,
 //     };
 //   },
 
 //   onResponse({ response }) {
-//     if (response._data && Array.isArray(response._data.data)) {
+//     if (response._data.data) {
 //       pdr.value = response._data.data;
-//       // console.log(response._data.data.length);
+//       console.log(response._data.data.length);
 //     } else {
-//       console.warn('Unexpected response:', response._data);
+//       console.warn('Unexpected response:', response._data.data);
 //     }
 //   },
 
@@ -37,14 +40,58 @@ const counter = ref(0);
 // });
 
 
-$fetch('https://eruhi.gorombazar.com/web/api/products', {
-  method:'get',
-  onResponse({ response }) {
-    if (response._data) {
-      pdr.value = response._data.data;
+// const {data, pending, error}  = await useFetch('https://eruhi.gorombazar.com/api/products', {
+//   method:'get',
+//   headers:{
+//     'Content-Type': 'application/json',
+//     'accept' : 'Application/Json',
+//     'X-MASTER-KEY': config.public.apiSecret,
+//   },
+
+// });
+
+$fetch(`${config.public.baseApi}/category`, 
+  {
+    method:'get',
+    headers:{
+      'Content-Type': 'application/json',
+      'accept' : 'Application/Json',
+      'X-MASTER-KEY': config.public.apiSecret,
+    } ,
+
+    onResponse({response}){
+      if (response.status == 200) {
+        ctr.value = response._data.data.data;
+        console.log(response._data.data);
+        
+      }else{
+        console.warn('Unexpected respons:', response._data);
+        
+      }
     }
   }
+);
+
+
+$fetch(`${config.public.baseApi}/products`, {
+  method:'get',
+  headers:{
+    'Content-Type': 'application/json',
+    'accept' : 'Application/Json',
+    'X-MASTER-KEY': config.public.apiSecret,
+  },
+
+    onResponse({ response }) {
+      if (response.status == 200) {
+        console.log(response._data.data.data);
+        pdr.value = response._data.data.data;
+      } else {
+        console.warn('Unexpected response:', response._data);
+      }
+    },
+
 });
+
 
 
 onMounted(() => {
@@ -60,13 +107,37 @@ function add()
 {
   counter.value ++;
 }
+
+
 </script>
 <template>
 
   <!-- product cart  -->
   <div class="container">
+    
+    <!-- <div v-else-if="error">Error: {{ error.message }}</div> -->
+    <div>
 
-    <div class="product_section layout_padding"
+      <Spinner v-if="pending" />
+      <div v-else class="mb-3">
+        <div style="display: grid; justify-content:center; grid-template-columns: repeat(auto-fill, minmax(120px, auto)); grid-gap:10px">
+          <NuxtLink to="" v-for="ct in ctr" class="position-relative border rounded-md" style="height:120px">
+
+            <div>
+              <img :src="`${config.public.assetUrl}/${ct.image}`" alt="" srcset="">
+              <p class="display-6 position-absolute bottom-0 w-100 text-center" >
+               {{ ct.name }} 
+              </p>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    
+    </div>
+
+    <spinner v-if="!pdr.length"/>
+    <!-- <div v-if="!pdr.length">Loading...</div> -->
+    <div v-else class="product_section "
       style="display: grid; justify-content:center; grid-template-columns: repeat(auto-fill, minmax(160px, auto)); grid-gap:10px">
 
       <div v-for="items in pdr">
@@ -80,9 +151,9 @@ function add()
 
   </div>
 
-  <button @click.prevent="add">
+  <!-- <button @click.prevent="add">
     incress - {{ counter }}
-  </button>
+  </button> -->
 </template>
 
 
