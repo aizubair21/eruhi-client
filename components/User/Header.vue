@@ -11,7 +11,7 @@
         <div class="container">
     
             <!-- {{-- desktop version  --}} -->
-            <div class="hidden sm:block">
+            <div class="">
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
                     <NuxtLink class="navbar-brand" to="/" >
                         ERUHI
@@ -26,7 +26,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="/">Home </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="">Categories</a>
@@ -34,33 +34,31 @@
                             <li  class="nav-item">
                                 <a class="nav-link" href="">Products</a>
                             </li>
-                            @auth
-                                
+                        
                                 <li class="nav-item">
-                                    <a class="nav-link position-relative" href=""><i class="fas fa-shopping-cart" style="font-size: 20px;"></i> <span class="cart-count">{{$count ?? 0}}</span></a>
+                                    <a class="nav-link position-relative" href=""><i class="fas fa-shopping-cart" style="font-size: 20px;"></i> <span class="cart-count">{{0}}</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " href="{{URL::to('/user/dashboard')}}"><i class="fas fa-user-circle" style="font-size: 20px;"></i></a>
                                 </li>
-                            @endauth    
-                            @auth
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
+                       
+                                <!-- <form id="logout-form" action="" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                                 <li class="nav-item">
                                     <a style="color:white;margin-left:5px;"
-                                    class="nav-link btn text_secondary border" href="{{route('login')}}"
+                                    class="nav-link btn text_secondary border" href=""
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                 </li>
-                            @else 
+                             -->
                                 <li class="nav-item">
-                                    <a style="width: 9em" class="nav-link px-3 py-1 rounded fs-4 flex border " href="{{route('register')}}"> <i class="fas fa-user-plus me-2"></i> Sign Up</a>
+                                    <a class="nav-link px-3 py-1 rounded d-flex border " href=""> Sign Up</a>
                                 </li>   
     
                                 <li  class="nav-item">
-                                    <a style="color:white;width:9em;margin-left:9px; " class="rounded nav-link btn_outline_secondary" href="{{route('login')}}"> <i class="fas fa-sign-in-alt me-2"></i> Login</a>
+                                    <NuxtLink style="color:white;margin-left:9px; " class="rounded nav-link btn_outline_secondary" to="/auth/login"> <i class="fas fa-sign-in-alt me-2"></i> Login</NuxtLink>
                                 </li>
-                            @endauth
                         </ul>
                     </div>
                 </nav>
@@ -68,7 +66,7 @@
             </div>
     
             <!-- {{-- mobile version  --}} -->
-            <div class="block sm:hidden" >
+            <!-- <div class="" >
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
                     <a class="navbar-brand" href="/">
                         ERUHI MB
@@ -122,7 +120,7 @@
                     </div>
                 </nav>
     
-            </div>
+            </div> -->
     
         </div>
     </header>

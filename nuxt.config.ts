@@ -4,11 +4,24 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  css: ['~/assets/main.css', '~/assets/css/user/style.css', '~/assets/css/user/bootstrap.css'],
+  css: ['~/assets/main.css', '~/assets/css/user/style.css', "bootstrap/dist/css/bootstrap.min.css",],
+
   vite: {
     plugins: [
       tailwindcss(),
+
     ],
+  },
+
+  app: {
+    head: {
+      script: [
+        {
+          src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js",
+          type: "text/javascript",
+        },
+      ],
+    },
   },
 
 

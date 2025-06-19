@@ -4,13 +4,15 @@
 </script>
 
 <template>
+<div style="height:100vh">
 
    <UserHeader />
-
-   <div class="">
+   
+   <div class="flex-1" >
       <slot />
    </div>
-
+   
+</div>
 
 </template>
 

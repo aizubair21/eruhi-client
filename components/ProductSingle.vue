@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+const config = useRuntimeConfig();
+
 const {products} = defineProps(['products'])
 
-console.log(products);
+// console.log(products);
 
 </script>
 
@@ -65,9 +67,7 @@ console.log(products);
                 <div class="pt-3 flex items-center">
                     Category:  
                     <div class="ps-3 text_primary bold rounded">
-                        <a wire:navigate >
-                           category Name
-                        </a>
+                        <NuxtLink :to=" {name: 'product-cat-category', params:{'category': products.category.id}  }"> {{ products.category.name }} </NuxtLink>
                     </div>
                 </div>
                 
