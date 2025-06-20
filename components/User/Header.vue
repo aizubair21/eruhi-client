@@ -26,13 +26,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">Home </a>
+                                <NuxtLink class="nav-link" to="/">Home </NuxtLink>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Categories</a>
+                                <NuxtLink class="nav-link" to="/category">Categories</NuxtLink>
                             </li>
                             <li  class="nav-item">
-                                <a class="nav-link" href="">Products</a>
+                                <NuxtLink class="nav-link" to="/product">Products</NuxtLink>
                             </li>
                         
                                 <li class="nav-item">
@@ -53,7 +53,7 @@
                                 </li>
                              -->
                                 <li class="nav-item">
-                                    <a class="nav-link px-3 py-1 rounded d-flex border " href=""> Sign Up</a>
+                                    <NuxtLink class="nav-link px-3 py-1 rounded d-flex border " to="/auth/register"> Sign Up</NuxtLink>
                                 </li>   
     
                                 <li  class="nav-item">

@@ -6,10 +6,13 @@ definePageMeta({
 
 // Runtime config (if needed)
 const config = useRuntimeConfig();
+const loader = useState('loader');
+loader.value = true;
+
+const counter = useState('counter');
 
 const pdr = ref([]);
 const ctr = ref([]);
-const counter = ref(0);
 
 // // Call API
 // const { data, pending, status, error, refresh } = await useFetch('https://eruhi.gorombazar.com/api/products', {
@@ -83,6 +86,7 @@ $fetch(`${config.public.baseApi}/products`, {
 
     onResponse({ response }) {
       if (response.status == 200) {
+        loader.value = false;
         // console.log(response._data.data.data);
         pdr.value = response._data.data.data;
       } else {
@@ -136,9 +140,9 @@ function add()
     
     </div>
 
-    <spinner v-if="!pdr.length"/>
+
     <!-- <div v-if="!pdr.length">Loading...</div> -->
-    <div v-else class="product_section "
+    <div class="product_section "
       style="display: grid; justify-content:center; grid-template-columns: repeat(auto-fill, 160px); grid-gap:10px">
 
       <div v-for="items in pdr">
@@ -149,9 +153,6 @@ function add()
       </div>
 
     </div>
-
-
-    <hr>
 
     <!-- <div>accordion</div>
     <div class="accordion" id="accordionExample">

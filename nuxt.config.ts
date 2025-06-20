@@ -12,14 +12,16 @@ export default defineNuxtConfig({
 
     ],
   },
-
+  ssr: false,
   app: {
     head: {
       script: [
-        {
-          src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js",
-          type: "text/javascript",
-        },
+
+        // {
+        //   src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js",
+        //   type: "text/javascript",
+        // },
+
       ],
     },
   },
